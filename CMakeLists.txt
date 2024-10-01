@@ -19,6 +19,7 @@ add_executable(
     ${PROJECT_NAME}
     src/main.cpp
     src/core/Engine.cpp
+    src/main/start_screen/StartScreen.cpp
 )
 
 add_custom_target(copy_assets
