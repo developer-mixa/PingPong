@@ -20,7 +20,6 @@ void Engine::registerScene(int index, Scene &scene){
 void Engine::build(){
     this->setActiveScene(0);
     Scene* scenePtr = &this->currentScene;
-
     if(scenePtr == NULL){
         throw std::runtime_error(
         "Attempted access to uninitialized scene object. "

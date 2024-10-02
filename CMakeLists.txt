@@ -20,7 +20,8 @@ add_executable(
     src/main.cpp
     src/core/Scene.cpp
     src/core/Engine.cpp
-    src/main/start_screen/StartScreen.cpp
+    src/core/MonoBehavior.cpp
+    src/main/start/StartScreen.cpp
 )
 
 add_custom_target(copy_assets

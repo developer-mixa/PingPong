@@ -6,8 +6,12 @@
 #include <iostream>
 
 class StartScreen : public MonoBehavior {
+public:
     void update(sf::RenderWindow& window) override;
-    void start() override;
+    void start(sf::RenderWindow& window) override;
+    sf::CircleShape shape; 
+    sf::Sprite background;
+    sf::Texture backgroundTexture;
 };
 
 #endif

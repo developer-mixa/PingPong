@@ -6,8 +6,10 @@
 class MonoBehavior
 {
 public:
-    virtual void start(){};
+    void fitToScreen(sf::Sprite& sprite, const sf::RenderWindow& window);
+    virtual void start(sf::RenderWindow &window){};
     virtual void update(sf::RenderWindow &window){};
+    virtual void eventTrigger(sf::Event event){};
     virtual ~MonoBehavior() = default;
 };
 

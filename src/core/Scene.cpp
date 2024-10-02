@@ -8,16 +8,21 @@
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 
-void Scene::start(){
+void Scene::start(sf::RenderWindow &window){
     for (auto behavior : this->behaviors){
-        behavior->start();
+        behavior->start(window);
     }
 }
 
 void Scene::update(sf::RenderWindow &window){
-    std::cout << this->behaviors.size();
     for (auto behavior : this->behaviors){
         behavior->update(window);
+    }
+}
+
+void Scene::handleEvent(sf::Event event){
+    for (auto behavior : this->behaviors){
+        behavior->eventTrigger(event);
     }
 }
 
@@ -26,9 +31,9 @@ void Scene::addMonoBehavior(MonoBehavior *behavior){
 }
 
 void Scene::run(){
-    this->start();
-
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "PingPong");
+
+    this->start(window);
 
     window.setVerticalSyncEnabled(true);
 
@@ -41,14 +46,10 @@ void Scene::run(){
                 this->isActive = false;                
                 window.close();
             }
-
-            if (event.type == sf::Event::MouseLeft){
-                Engine::getInstance().setActiveScene(0);
-            }
-                
+            
         }
         
-        window.clear(sf::Color::Black);
+        window.clear();
         this->update(window);
         window.display();
     }

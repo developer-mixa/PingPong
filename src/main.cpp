@@ -5,11 +5,11 @@
 
 int main()
 {
-    Scene scene = Scene();
+    Scene startScene = Scene();
     StartScreen* screen = new StartScreen();
-    scene.addMonoBehavior(screen);
+    startScene.addMonoBehavior(screen);
 
-    Engine::create(scene);
+    Engine::create(startScene);
 
     return 0;
 }
