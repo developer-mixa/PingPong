@@ -9,8 +9,7 @@ int main()
     StartScreen* screen = new StartScreen();
     scene.addMonoBehavior(screen);
 
-    Engine engine = Engine(scene);
-    engine.build();
+    Engine::create(scene);
 
     return 0;
 }

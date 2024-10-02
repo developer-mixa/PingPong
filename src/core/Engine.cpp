@@ -1,6 +1,8 @@
 #include "Engine.hpp"
 #include "Scene.hpp"
 
+Engine* Engine::instance = nullptr;
+
 Scene& Engine::getActiveScene(){
     return this->currentScene;
 }
@@ -36,4 +38,13 @@ void Engine::build(){
 
 Engine::Engine(Scene &scene){
     this->registerScene(0, scene);
+}
+
+void Engine::create(Scene &firstScene){
+    instance = new Engine(firstScene);
+    instance->build();
+}
+
+Engine& Engine::getInstance() {
+    return *instance;
 }

@@ -4,14 +4,18 @@
 #include "Scene.hpp"
 
 class Engine {
-public:
+private:
     std::map<int, Scene> scenes;
+    static Engine* instance;
     Scene currentScene;
+    void build();
+    Engine(Scene &firstScene);
+public:
+    static Engine& getInstance();
+    static void create(Scene &scene);
     Scene& getActiveScene();
     void setActiveScene(int indexScene);
     void registerScene(int index, Scene &scene);
-    void build();
-    Engine(Scene &firstScene);
 };
 
 #endif
