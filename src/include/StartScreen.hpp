@@ -7,6 +7,7 @@
 
 class StartScreen : public MonoBehavior {
     void update(sf::RenderWindow& window) override;
+    void start() override;
 };
 
 #endif

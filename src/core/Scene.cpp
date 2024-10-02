@@ -1,6 +1,7 @@
 #include <vector>
 #include "MonoBehavior.hpp"
 #include "Scene.hpp"
+#include "Engine.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -37,8 +38,12 @@ void Scene::run(){
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed){
-                this->isActive = false;
+                this->isActive = false;                
                 window.close();
+            }
+
+            if (event.type == sf::Event::MouseLeft){
+                Engine::getInstance().setActiveScene(0);
             }
                 
         }
