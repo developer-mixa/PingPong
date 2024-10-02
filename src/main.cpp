@@ -1,12 +1,12 @@
 #include <SFML/Graphics.hpp>
-#include "include/Engine.hpp"
+#include "include/Scene.hpp"
 #include "include/StartScreen.hpp"
 
 int main()
 {
-    Engine engine = Engine();
+    Scene scene = Scene();
     StartScreen* screen = new StartScreen();
-    engine.addMonoBehavior(screen);
-    engine.run();
+    scene.addMonoBehavior(screen);
+    scene.run();
     return 0;
 }

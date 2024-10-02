@@ -5,7 +5,7 @@
 #include "MonoBehavior.hpp"
 #include <SFML/Graphics.hpp>
 
-class Engine {
+class Scene {
 private:
     void start();
     void update(sf::RenderWindow &window);

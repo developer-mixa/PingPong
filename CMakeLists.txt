@@ -18,7 +18,7 @@ find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED
 add_executable(
     ${PROJECT_NAME}
     src/main.cpp
-    src/core/Engine.cpp
+    src/core/Scene.cpp
     src/main/start_screen/StartScreen.cpp
 )
 
