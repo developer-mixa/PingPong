@@ -31,13 +31,16 @@ void Scene::run(){
 
     window.setVerticalSyncEnabled(true);
 
-    while (window.isOpen())
+    while (window.isOpen() && this->isActive)
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed){
+                this->isActive = false;
                 window.close();
+            }
+                
         }
         
         window.clear(sf::Color::Black);

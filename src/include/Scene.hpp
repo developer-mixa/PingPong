@@ -1,5 +1,5 @@
-#ifndef ENGINE_H
-#define ENGINE_H
+#ifndef SCENE_H
+#define SCENE_H
 
 #include <vector>
 #include "MonoBehavior.hpp"
@@ -11,6 +11,7 @@ private:
     void update(sf::RenderWindow &window);
 public:
     std::vector<MonoBehavior*> behaviors;
+    bool isActive = false;
     void addMonoBehavior(MonoBehavior *behavior);
     void run();
 };
