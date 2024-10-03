@@ -15,6 +15,7 @@ private:
     sf::Sprite background;
     sf::Texture backgroundTexture;
     TextButton startButton;
+    TextButton quitButton;
     sf::Font font;
 
 public:

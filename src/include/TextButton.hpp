@@ -8,6 +8,7 @@ class TextButton : UiElement {
 private:
     sf::RectangleShape rectangleButton;
     sf::Text buttonText;
+    bool mouseInButton(sf::RenderWindow &window);
 public:
     TextButton(
         char* text,
@@ -21,9 +22,11 @@ public:
 
     TextButton(){};
 
+    sf::Vector2f getPosition();
     void setPosition(float x, float y);
     virtual void draw(sf::RenderWindow &window) override;
     bool isPressed(sf::Event event, sf::RenderWindow &window);
+    bool isMouseOver(sf::Event event, sf::RenderWindow &window);
 
     float thickness = 2;
     sf::Color outlineColor = sf::Color::Black;
