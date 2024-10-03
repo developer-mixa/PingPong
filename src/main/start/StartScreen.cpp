@@ -11,6 +11,7 @@
 #define PLAY_TEXT "Play"
 #define START_SCREEN_PATH "assets/images/start_screen.jpg"
 #define FONT_PATH "assets/fonts/Roboto-Black.ttf"
+#include "TextButton.hpp"
 
 void StartScreen::initBackground(){
 
@@ -22,15 +23,16 @@ void StartScreen::initStartButton(sf::RenderWindow& window){
     const auto windowSize = window.getSize();
     const int offset = windowSize.x / OFFSET_DIVIDER;
 
-    startButton = sf::RectangleShape(sf::Vector2f(BUTTON_WIDTH, BUTTON_HEIGHT));
-    buttonTextStart = sf::Text(PLAY_TEXT, font, FONT_SIZE);
-    startButton.setFillColor(sf::Color::Green);
-    startButton.setOutlineThickness(2);
-    startButton.setOutlineColor(sf::Color::Black);
-    buttonTextStart.setCharacterSize(FONT_SIZE);
-    buttonTextStart.setFillColor(sf::Color::White);
-    startButton.setPosition(windowSize.x-BUTTON_WIDTH-offset, BUTTON_HEIGHT);
-    buttonTextStart.setPosition(startButton.getPosition().x + FONT_OFFSET, startButton.getPosition().y + FONT_OFFSET);
+    startButton = TextButton(
+        PLAY_TEXT,
+        BUTTON_WIDTH,
+        BUTTON_HEIGHT,
+        font,
+        sf::Color::Green,
+        windowSize.x-BUTTON_WIDTH-offset,
+        BUTTON_HEIGHT
+    );
+
 }
 
 void StartScreen::start(sf::RenderWindow &window){
@@ -42,6 +44,5 @@ void StartScreen::start(sf::RenderWindow &window){
 
 void StartScreen::update(sf::RenderWindow &window){
     window.draw(background);
-    window.draw(startButton);
-    window.draw(buttonTextStart);
+    startButton.draw(window);
 }

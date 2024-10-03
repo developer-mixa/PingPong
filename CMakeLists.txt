@@ -21,6 +21,7 @@ add_executable(
     src/core/Scene.cpp
     src/core/Engine.cpp
     src/core/MonoBehavior.cpp
+    src/core/ui/TextButton.cpp
     src/main/start/StartScreen.cpp
 )
 

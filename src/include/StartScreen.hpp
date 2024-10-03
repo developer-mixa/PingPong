@@ -4,6 +4,7 @@
 #include "MonoBehavior.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "TextButton.hpp"
 
 class StartScreen : public MonoBehavior {
 private:
@@ -13,11 +14,11 @@ private:
     sf::CircleShape shape; 
     sf::Sprite background;
     sf::Texture backgroundTexture;
-    sf::RectangleShape startButton;
-    sf::Text buttonTextStart;
+    TextButton startButton;
     sf::Font font;
 
 public:
+    StartScreen() {};
     void update(sf::RenderWindow& window) override;
     void start(sf::RenderWindow& window) override;
 };
