@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "StartScreen.hpp"
+#include "Engine.hpp"
 
 #define BUTTON_WIDTH 200
 #define BUTTON_HEIGHT 50
@@ -16,7 +17,6 @@
 #include "TextButton.hpp"
 
 void StartScreen::initBackground(){
-
     backgroundTexture.loadFromFile(START_SCREEN_PATH);
     background = sf::Sprite(backgroundTexture);
 }
@@ -44,7 +44,7 @@ void StartScreen::initStartButton(sf::RenderWindow& window){
 
 void StartScreen::eventTrigger(sf::Event event, sf::RenderWindow &window){
     if(startButton.isPressed(event, window)){
-        // Turn on new scene
+        Engine::getInstance().setActiveScene(1);
     }
 
     if(quitButton.isPressed(event, window)){

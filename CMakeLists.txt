@@ -23,6 +23,7 @@ add_executable(
     src/core/MonoBehavior.cpp
     src/core/ui/TextButton.cpp
     src/main/start/StartScreen.cpp
+    src/main/game/GameScreen.cpp
 )
 
 add_custom_target(copy_assets
