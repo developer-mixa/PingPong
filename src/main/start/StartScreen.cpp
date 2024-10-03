@@ -49,8 +49,8 @@ void StartScreen::eventTrigger(sf::Event event, sf::RenderWindow &window){
     if(quitButton.isMouseOver(event, window)){
         auto windowSize = window.getSize();
 
-        float randomX = static_cast<float>(rand()) / RAND_MAX * (window.getSize().x - BUTTON_WIDTH);
-        float randomY = static_cast<float>(rand()) / RAND_MAX * (window.getSize().y - BUTTON_HEIGHT);
+        float randomX = static_cast<float>(rand()) / RAND_MAX * (windowSize.x - BUTTON_WIDTH);
+        float randomY = static_cast<float>(rand()) / RAND_MAX * (windowSize.y - BUTTON_HEIGHT);
         quitButton.setPosition(randomX, randomY);
     }
 }

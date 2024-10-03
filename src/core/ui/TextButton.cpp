@@ -1,6 +1,5 @@
 #include "TextButton.hpp"
 
-
 TextButton::TextButton(
     char* text,
     float width,
@@ -38,7 +37,7 @@ void TextButton::draw(sf::RenderWindow &window){
 }
 
 bool TextButton::mouseInButton(sf::RenderWindow &window){
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
     return rectangleButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
 }
 
