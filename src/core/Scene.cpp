@@ -20,9 +20,9 @@ void Scene::update(sf::RenderWindow &window){
     }
 }
 
-void Scene::handleEvent(sf::Event event){
+void Scene::handleEvent(sf::Event event, sf::RenderWindow &window){
     for (auto behavior : this->behaviors){
-        behavior->eventTrigger(event);
+        behavior->eventTrigger(event, window);
     }
 }
 
@@ -42,6 +42,8 @@ void Scene::run(){
         sf::Event event;
         while (window.pollEvent(event))
         {
+            handleEvent(event, window);
+
             if (event.type == sf::Event::Closed){
                 this->isActive = false;                
                 window.close();

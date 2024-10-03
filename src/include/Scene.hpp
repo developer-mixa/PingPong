@@ -9,7 +9,7 @@ class Scene {
 private:
     void start(sf::RenderWindow &window);
     void update(sf::RenderWindow &window);
-    void handleEvent(sf::Event event);
+    void handleEvent(sf::Event event, sf::RenderWindow &window);
 public:
     std::vector<MonoBehavior*> behaviors;
     bool isActive = false;

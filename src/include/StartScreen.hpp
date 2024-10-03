@@ -21,6 +21,7 @@ public:
     StartScreen() {};
     void update(sf::RenderWindow& window) override;
     void start(sf::RenderWindow& window) override;
+    void eventTrigger(sf::Event event, sf::RenderWindow &window) override;
 };
 
 #endif

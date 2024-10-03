@@ -33,3 +33,18 @@ void TextButton::draw(sf::RenderWindow &window){
     window.draw(rectangleButton);
     window.draw(buttonText);
 }
+bool TextButton::isPressed (const sf::Event event, sf::RenderWindow &window) {
+    if (event.type != sf::Event::MouseButtonPressed || event.mouseButton.button != sf::Mouse::Left) {
+        return false;
+    }
+
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+    sf::Vector2f buttonPos = rectangleButton.getPosition();
+
+    return
+        mousePos.x > buttonPos.x &&
+        mousePos.x < buttonPos.x + rectangleButton.getSize().x &&
+        mousePos.y > buttonPos.y &&
+        mousePos.y < buttonPos.y + rectangleButton.getSize().y;
+}

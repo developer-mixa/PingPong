@@ -32,7 +32,12 @@ void StartScreen::initStartButton(sf::RenderWindow& window){
         windowSize.x-BUTTON_WIDTH-offset,
         BUTTON_HEIGHT
     );
+}
 
+void StartScreen::eventTrigger(sf::Event event, sf::RenderWindow &window){
+    if(startButton.isPressed(event, window)){
+        // Turn on new scene
+    }
 }
 
 void StartScreen::start(sf::RenderWindow &window){
