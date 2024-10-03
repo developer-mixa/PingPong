@@ -46,6 +46,11 @@ void StartScreen::eventTrigger(sf::Event event, sf::RenderWindow &window){
     if(startButton.isPressed(event, window)){
         // Turn on new scene
     }
+
+    if(quitButton.isPressed(event, window)){
+        window.close();
+    }
+
     if(quitButton.isMouseOver(event, window)){
         auto windowSize = window.getSize();
 
