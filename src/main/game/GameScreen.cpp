@@ -8,10 +8,8 @@ void GameScreen::initBackground(){
 }
 
 void GameScreen::start(sf::RenderWindow& window){
-    initBackground();
-    fitToScreen(background, window);
+    
 };
 
 void GameScreen::update(sf::RenderWindow& window){
-    //window.draw(background);
 };
