@@ -45,7 +45,7 @@ void Scene::run(){
             handleEvent(event, window);
 
             if (event.type == sf::Event::Closed){
-                this->isActive = false;                
+                Engine::getInstance().destroy();               
                 window.close();
             }
             

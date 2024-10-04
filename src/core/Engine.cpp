@@ -10,12 +10,16 @@ Scene& Engine::getActiveScene(){
 void Engine::setActiveScene(int indexScene){
     this->currentScene.isActive = false;
     this->currentScene = this->scenes[indexScene];
-    this->currentScene.isActive = true;
 };
 
-void Engine::registerScene(int index, Scene &scene){
+Engine& Engine::registerScene(int index, Scene &scene){
     this->scenes[index] = scene;
+    return *this;
 };
+
+void Engine::destroy(){
+    isDestroy = true;
+}
 
 void Engine::build(){
     this->setActiveScene(0);
@@ -30,8 +34,12 @@ void Engine::build(){
     while (true)
     {
         if(this->currentScene.isActive){
-            scenePtr->run();
+            currentScene.run();
         }
+
+        if(isDestroy) break;
+
+        this->currentScene.isActive = true;
     }
 }
 
@@ -41,7 +49,6 @@ Engine::Engine(Scene &scene){
 
 void Engine::create(Scene &firstScene){
     instance = new Engine(firstScene);
-    instance->build();
 }
 
 Engine& Engine::getInstance() {
