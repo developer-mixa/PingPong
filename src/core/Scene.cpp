@@ -4,6 +4,7 @@
 #include "Engine.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <typeinfo>
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080

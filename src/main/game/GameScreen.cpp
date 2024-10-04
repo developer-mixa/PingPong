@@ -2,13 +2,17 @@
 
 #define GAME_SCREEN_PATH ""
 
+#include "Engine.hpp"
+#include "Platform.hpp"
+
 void GameScreen::initBackground(){
-    //backgroundTexture.loadFromFile(GAME_SCREEN_PATH);
-    //background = sf::Sprite(backgroundTexture);
+    
 }
 
+Platform* platform = nullptr;
+
 void GameScreen::start(sf::RenderWindow& window){
-    
+    platform = Engine::getInstance().getActiveScene().FindObjectOfType<Platform>();
 };
 
 void GameScreen::update(sf::RenderWindow& window){

@@ -5,7 +5,7 @@
 
 class Platform : public MonoBehavior {
 private:
-    float speed = 5;
+    float speed = 20;
     sf::Keyboard::Key leftMoveCode;
     sf::Keyboard::Key rightMoveCode;
     sf::RectangleShape rectanglePlatform;
