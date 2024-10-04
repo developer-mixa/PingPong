@@ -11,12 +11,17 @@ int main()
     Scene gameScene = Scene();
 
     StartScreen* screen = new StartScreen();
-    startScene.addMonoBehavior(screen);
+    startScene.addComponent(screen);
 
     GameScreen* gameScreen = new GameScreen();
-    Platform* platform = new Platform(sf::Keyboard::A, sf::Keyboard::D);
-    gameScene.addMonoBehavior(gameScreen);
-    gameScene.addMonoBehavior(platform);
+
+    Platform* upPlatform = new Platform(sf::Keyboard::A, sf::Keyboard::D);
+    Platform* downPlatform = new Platform(sf::Keyboard::Left, sf::Keyboard::Right);
+    
+    gameScene
+        .addComponent(gameScreen)
+        .addComponent(upPlatform)
+        .addComponent(downPlatform);
 
     Engine::create(startScene);
 

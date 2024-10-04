@@ -9,10 +9,12 @@ void GameScreen::initBackground(){
     
 }
 
-Platform* platform = nullptr;
+std::vector<Platform*> platforms;
 
 void GameScreen::start(sf::RenderWindow& window){
-    platform = Engine::getInstance().getActiveScene().FindObjectOfType<Platform>();
+    platforms = Engine::getInstance().getActiveScene().FindObjectsOfType<Platform>();
+    platforms[0]->setY(100);
+    platforms[1]->setY(window.getSize().y - 100 - platforms[1]->height);
 };
 
 void GameScreen::update(sf::RenderWindow& window){

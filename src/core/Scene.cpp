@@ -27,8 +27,9 @@ void Scene::handleEvent(sf::Event event, sf::RenderWindow &window){
     }
 }
 
-void Scene::addMonoBehavior(MonoBehavior *behavior){
+Scene& Scene::addComponent(MonoBehavior *behavior){
     this->behaviors.push_back(behavior);
+    return *this;
 }
 
 void Scene::run(){

@@ -5,10 +5,14 @@ Platform::Platform(sf::Keyboard::Key leftMoveCode, sf::Keyboard::Key rightMoveCo
     this->rightMoveCode = rightMoveCode;
 }
 
+void Platform::setY(float height){
+    this->y = height;
+}
+
 void Platform::start(sf::RenderWindow &window){
-    rectanglePlatform = sf::RectangleShape(sf::Vector2f(200, 50));
+    rectanglePlatform = sf::RectangleShape(sf::Vector2f(200, height));
     rectanglePlatform.setFillColor(sf::Color::White);
-    rectanglePlatform.setPosition(window.getSize().x / 2 - rectanglePlatform.getSize().x / 2, 100);
+    rectanglePlatform.setPosition(window.getSize().x / 2 - rectanglePlatform.getSize().x / 2, y);
 }
 
 void Platform::goLeft(sf::RenderWindow &window){
@@ -24,12 +28,21 @@ void Platform::goRight(sf::RenderWindow &window){
 }
 
 void Platform::eventTrigger(sf::Event event, sf::RenderWindow &window){
-    if(event.type == sf::Event::KeyPressed){
-        if(event.key.code == leftMoveCode) goLeft(window);
-        else if(event.key.code == rightMoveCode) goRight(window);
+    switch (event.type)
+    {
+    case sf::Event::KeyPressed:
+        if(event.key.code == leftMoveCode) movingLeft = true;
+        else if(event.key.code == rightMoveCode) movingRight = true;
+        break;
+    case sf::Event::KeyReleased:
+        if(event.key.code == leftMoveCode) movingLeft = false;
+        else if(event.key.code == rightMoveCode) movingRight = false;
+        break;
     }
 }
 
 void Platform::update(sf::RenderWindow &window){
+    if(movingLeft) goLeft(window);
+    if(movingRight) goRight(window);
     window.draw(rectanglePlatform);
 }

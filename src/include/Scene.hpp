@@ -13,7 +13,7 @@ private:
 public:
     std::vector<MonoBehavior*> behaviors;
     bool isActive = false;
-    void addMonoBehavior(MonoBehavior *behavior);
+    Scene& addComponent(MonoBehavior *behavior);
     void run();
 
     template<typename T> T* FindObjectOfType(){
