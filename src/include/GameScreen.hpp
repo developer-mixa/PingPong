@@ -2,6 +2,7 @@
 #define GAME_SCREEN_H
 
 #include "MonoBehavior.hpp"
+#include "CountdownDisplay.hpp"
 
 class GameScreen : public MonoBehavior{
 private:

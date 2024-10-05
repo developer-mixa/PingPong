@@ -22,6 +22,7 @@ add_executable(
     src/core/Engine.cpp
     src/core/MonoBehavior.cpp
     src/core/ui/TextButton.cpp
+    src/core/ui/CountdownDisplay.cpp
     src/main/start/StartScreen.cpp
     src/main/game/GameScreen.cpp
     src/main/game/Platform.cpp
