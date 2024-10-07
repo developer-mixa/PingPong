@@ -3,11 +3,13 @@
 #include <future>
 #include <thread>
 
+#define TEXT_SIZE 50
+
 CountdownDisplay::CountdownDisplay(const std::string& fontPath, int startCount){
     font.loadFromFile(fontPath);
     count = startCount;
     text.setFont(font);
-    text.setCharacterSize(50);
+    text.setCharacterSize(TEXT_SIZE);
     text.setFillColor(sf::Color::White);
     text.setOutlineColor(sf::Color::Black);
     text.setOutlineThickness(2);
@@ -25,14 +27,7 @@ void CountdownDisplay::doRun(){
 
 void CountdownDisplay::centerByWindow(sf::RenderWindow& window){
     auto windowSize = window.getSize();
-    auto bounds = text.getLocalBounds();
-    
-    text.setPosition(
-        windowSize.x / 2 + bounds.width,
-
-        // i dont know why it does not work
-        windowSize.y / 2 - bounds.height
-    );
+    text.setPosition(windowSize.x / 2, windowSize.y / 2 - TEXT_SIZE);
 }
 
 void CountdownDisplay::run(){

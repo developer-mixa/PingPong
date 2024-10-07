@@ -13,6 +13,9 @@ private:
 public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+    void start(sf::RenderWindow& window) override;
+
+
     PingPongBall(Platform &topPlatform, Platform &bottomPlatform);
 
     void move();

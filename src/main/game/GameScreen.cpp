@@ -28,7 +28,7 @@ void GameScreen::start(sf::RenderWindow& window){
 };
 
 void GameScreen::update(sf::RenderWindow& window){
-    if(!countdownDisplay.finish)window.draw(countdownDisplay);
+    if(!countdownDisplay.finish) window.draw(countdownDisplay);
     else {
         pingPongBall->move();
         window.draw(*pingPongBall);
