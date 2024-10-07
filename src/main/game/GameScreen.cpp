@@ -5,6 +5,7 @@
 #include "Engine.hpp"
 #include "Platform.hpp"
 #include "CountdownDisplay.hpp"
+#include <iostream>
 
 void GameScreen::initBackground(){
     
@@ -19,9 +20,11 @@ void GameScreen::start(sf::RenderWindow& window){
     platforms[1]->setY(window.getSize().y - 100 - platforms[1]->height);
     
     countdownDisplay.centerByWindow(window);
-    countdownDisplay.run();
+    countdownDisplay.run([](){
+        
+    });
 };
 
 void GameScreen::update(sf::RenderWindow& window){
-    window.draw(countdownDisplay);
+    if(!countdownDisplay.finish)window.draw(countdownDisplay);
 };
