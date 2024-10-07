@@ -18,9 +18,9 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
         target.draw(text, states);
     }
-    void doRun(std::function<void()> finishCallback);
     void centerByWindow(sf::RenderWindow& window);
-    void run(std::function<void()> finishCallback);
+    void doRun();
+    void run();
 };
 
 #endif

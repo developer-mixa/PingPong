@@ -26,6 +26,7 @@ add_executable(
     src/main/start/StartScreen.cpp
     src/main/game/GameScreen.cpp
     src/main/game/Platform.cpp
+    src/main/game/PingPongBall.cpp
 )
 
 add_custom_target(copy_assets

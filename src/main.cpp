@@ -4,6 +4,7 @@
 #include "include/StartScreen.hpp"
 #include "include/GameScreen.hpp"
 #include "include/Platform.hpp"
+#include "include/PingPongBall.hpp"
 
 int main()
 {
@@ -17,11 +18,13 @@ int main()
 
     Platform* upPlatform = new Platform(sf::Keyboard::A, sf::Keyboard::D);
     Platform* downPlatform = new Platform(sf::Keyboard::Left, sf::Keyboard::Right);
+    PingPongBall* pingPongBall = new PingPongBall(*upPlatform, *downPlatform);
     
     gameScene
         .addComponent(gameScreen)
         .addComponent(upPlatform)
-        .addComponent(downPlatform);
+        .addComponent(downPlatform)
+        .addComponent(pingPongBall);
 
     Engine::create(startScene);
 

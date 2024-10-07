@@ -13,14 +13,13 @@ CountdownDisplay::CountdownDisplay(const std::string& fontPath, int startCount){
     text.setOutlineThickness(2);
 }
 
-void CountdownDisplay::doRun(std::function<void()> finishCallback){
+void CountdownDisplay::doRun(){
     while (count > 0)
     {
         text.setString(std::to_string(count));
         sf::sleep(sf::milliseconds(1000));
         count -= 1;
     }
-    finishCallback();
     finish = true;
 }
 
@@ -36,7 +35,7 @@ void CountdownDisplay::centerByWindow(sf::RenderWindow& window){
     );
 }
 
-void CountdownDisplay::run(std::function<void()> finishCallback){
-    countdownThread = std::thread(&CountdownDisplay::doRun, this, finishCallback);
+void CountdownDisplay::run(){
+    countdownThread = std::thread(&CountdownDisplay::doRun, this);
     countdownThread.detach();
 }
