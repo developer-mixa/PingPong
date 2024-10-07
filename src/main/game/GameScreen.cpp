@@ -2,7 +2,7 @@
 
 #define GAME_SCREEN_PATH ""
 
-#include "Engine.hpp"
+#include "GameObject.hpp"
 #include "Platform.hpp"
 #include "CountdownDisplay.hpp"
 #include "PingPongBall.hpp"
@@ -17,8 +17,9 @@ PingPongBall* pingPongBall;
 CountdownDisplay countdownDisplay("assets/fonts/Roboto-Black.ttf");    
 
 void GameScreen::start(sf::RenderWindow& window){
-    platforms = Engine::getInstance().getActiveScene().FindObjectsOfType<Platform>();
-    pingPongBall = Engine::getInstance().getActiveScene().FindObjectOfType<PingPongBall>();
+    platforms = GameObject::FindObjectsOfType<Platform>();
+    pingPongBall = GameObject::FindObjectOfType<PingPongBall>();
+
     platforms[0]->setY(100);
     platforms[1]->setY(window.getSize().y - 100 - platforms[1]->height);
     
