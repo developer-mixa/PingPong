@@ -30,14 +30,14 @@ void Platform::goRight(sf::RenderWindow &window){
 void Platform::eventTrigger(sf::Event event, sf::RenderWindow &window){
     switch (event.type)
     {
-    case sf::Event::KeyPressed:
-        if(event.key.code == leftMoveCode) movingLeft = true;
-        else if(event.key.code == rightMoveCode) movingRight = true;
-        break;
-    case sf::Event::KeyReleased:
-        if(event.key.code == leftMoveCode) movingLeft = false;
-        else if(event.key.code == rightMoveCode) movingRight = false;
-        break;
+        case sf::Event::KeyPressed:
+            if(event.key.code == leftMoveCode) movingLeft = true;
+            else if(event.key.code == rightMoveCode) movingRight = true;
+            break;
+        case sf::Event::KeyReleased:
+            if(event.key.code == leftMoveCode) movingLeft = false;
+            else if(event.key.code == rightMoveCode) movingRight = false;
+            break;
     }
 }
 
