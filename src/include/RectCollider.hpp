@@ -6,9 +6,8 @@
 
 class RectCollider : public Collider {
 public:
-    sf::FloatRect bounds;
-
-    RectCollider(sf::Vector2f size, sf::Vector2f position);
+    sf::RectangleShape* rectangle;
+    RectCollider(sf::RectangleShape& rectangle);
     
     bool collide(Collider& other) override;
 };

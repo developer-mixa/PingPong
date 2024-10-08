@@ -6,10 +6,11 @@
 
 class CircleCollider : public Collider {
 public:
-    CircleCollider(float x, float y, float radius);
+    sf::CircleShape* circle;
+    CircleCollider(sf::CircleShape& circle);
     
     bool collide(Collider& other) override;
-    bool collidesWithRect(sf::FloatRect& rect);
+    bool collidesWithRect(sf::RectangleShape& rectangle);
 
 private:
     sf::Vector2f center;

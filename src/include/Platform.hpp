@@ -2,8 +2,9 @@
 #define PLATFORM_H
 
 #include "MonoBehavior.hpp"
+#include "RectCollider.hpp"
 
-class Platform : public MonoBehavior {
+class Platform : public MonoBehavior, public RectCollider {
 private:
     const float speed = 20;
     float y = 0;

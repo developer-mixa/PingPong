@@ -1,6 +1,10 @@
 #include "Platform.hpp"
+#include "RectCollider.hpp"
 
-Platform::Platform(sf::Keyboard::Key leftMoveCode, sf::Keyboard::Key rightMoveCode){
+Platform::Platform(
+    sf::Keyboard::Key leftMoveCode,
+    sf::Keyboard::Key rightMoveCode
+) : RectCollider(rectanglePlatform) {
     this->leftMoveCode = leftMoveCode;
     this->rightMoveCode = rightMoveCode;
 }
@@ -44,5 +48,6 @@ void Platform::eventTrigger(sf::Event event, sf::RenderWindow &window){
 void Platform::update(sf::RenderWindow &window){
     if(movingLeft) goLeft(window);
     if(movingRight) goRight(window);
+    setPosition(rectanglePlatform.getPosition());
     window.draw(rectanglePlatform);
 }

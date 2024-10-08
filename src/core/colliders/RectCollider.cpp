@@ -1,15 +1,20 @@
 #include "RectCollider.hpp"
 #include "CircleCollider.hpp"
 
-RectCollider::RectCollider(sf::Vector2f size, sf::Vector2f position)
-    : bounds(position, size) {}
+#include <iostream>
+
+RectCollider::RectCollider(sf::RectangleShape& rectangle) {
+    this->rectangle = &rectangle;
+}
 
 bool RectCollider::collide(Collider& other) {
     if (auto* other_rect = dynamic_cast<RectCollider*>(&other)) {
-        return bounds.intersects(other_rect->bounds);
+        return false;
     }
+
     if (auto* circle = dynamic_cast<CircleCollider*>(&other)) {
-        return circle->collidesWithRect(bounds);
+        return circle->collidesWithRect(*this->rectangle);
     }
+    
     return false;
 }
