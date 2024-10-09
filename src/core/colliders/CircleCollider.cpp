@@ -1,6 +1,9 @@
 #include "CircleCollider.hpp"
 #include "RectCollider.hpp"
 #include <iostream>
+#include <cmath>
+
+using namespace std;
 
 CircleCollider::CircleCollider(sf::CircleShape& circle) {
     this->circle = &circle;
@@ -20,8 +23,8 @@ bool CircleCollider::collide(Collider& other) {
 
 bool CircleCollider::collidesWithRect(sf::RectangleShape& rectangle) {
 
-    auto circlePos = circle->getPosition(); 
-    auto rectPos = rectangle.getPosition();
+     auto circlePos = circle->getPosition(); 
+     auto rectPos = rectangle.getPosition();
     auto rectBounds = rectangle.getLocalBounds();
 
     auto x = abs(circlePos.x - rectPos.x);
