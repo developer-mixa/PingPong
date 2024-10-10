@@ -22,24 +22,5 @@ bool CircleCollider::collide(Collider& other) {
 }
 
 bool CircleCollider::collidesWithRect(sf::RectangleShape& rectangle) {
-
-     auto circlePos = circle->getPosition(); 
-     auto rectPos = rectangle.getPosition();
-    auto rectBounds = rectangle.getLocalBounds();
-
-    auto x = abs(circlePos.x - rectPos.x);
-    auto y = abs(circlePos.y - rectPos.y);
-    auto circleRaduis = circle->getRadius();
-
-    if (x > (rectBounds.width/2 + circleRaduis)) { return false; }
-    if (y > (rectBounds.height/2 + circleRaduis)) { return false; }
-
-    if (x <= (rectBounds.width/2)) { return true; } 
-    if (y <= (rectBounds.height/2)) { return true; }
-
-    auto cornerDistance_sq = (x - rectBounds.width/2)*(x - rectBounds.width/2) +
-                         (y - rectBounds.height/2)*(y - rectBounds.height/2);
-                         
-    auto r2 = circleRaduis*circleRaduis;
-    return cornerDistance_sq <= r2;
+    return rectangle.getGlobalBounds().intersects(circle->getGlobalBounds());
 }
