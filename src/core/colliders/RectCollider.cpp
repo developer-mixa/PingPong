@@ -9,7 +9,7 @@ RectCollider::RectCollider(sf::RectangleShape& rectangle) {
 
 bool RectCollider::collide(Collider& other) {
     if (auto* other_rect = dynamic_cast<RectCollider*>(&other)) {
-        return false;
+        return other_rect->rectangle->getGlobalBounds().intersects(rectangle->getGlobalBounds());
     }
 
     if (auto* circle = dynamic_cast<CircleCollider*>(&other)) {
