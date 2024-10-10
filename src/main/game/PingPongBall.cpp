@@ -9,7 +9,7 @@
 #define _USE_MATH_DEFINES
 #define CIRCLE_RADUIS 30
 #define MIN_ANGLE 30
-#define SPEED 2
+#define MAX_SPEED 10.f
 #define MAX_ANGLE 150
 
 void PingPongBall::start(sf::RenderWindow& window) {
@@ -56,12 +56,13 @@ void PingPongBall::move(){
         refresh();
     }
 
-    circle.setPosition(velocity.x * SPEED + currentPosition.x, velocity.y * SPEED + currentPosition.y);
+    circle.setPosition(velocity.x * speed + currentPosition.x, velocity.y * speed + currentPosition.y);
 }
 
 bool PingPongBall::checkAndSetLastTouch(bool collideValue, CollisionType checkCollisionType){
     bool result = collideValue && lastTouch != checkCollisionType;
     if(collideValue) lastTouch = checkCollisionType;
+    if(result) speed = std::min(speed + 1, MAX_SPEED);
     return result;
 }
 

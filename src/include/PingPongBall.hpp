@@ -13,6 +13,7 @@ private:
     Platform* topPlatform;
     Platform* bottomPlatform;
     sf::Vector2f velocity;
+    float speed = 2;
     float angle;
     CollisionType lastTouch = CollisionType::NONE;
     sf::RenderWindow* window;

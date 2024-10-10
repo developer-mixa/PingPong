@@ -6,7 +6,7 @@
 
 class Platform : public MonoBehavior, public RectCollider {
 private:
-    const float speed = 20;
+    const float speed = 10;
     float y = 0;
     sf::Keyboard::Key leftMoveCode;
     sf::Keyboard::Key rightMoveCode;
