@@ -9,8 +9,18 @@
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 
+
+Scene Scene::copy(){
+    Scene newScene;
+    for(auto behavior : behaviors){
+        auto newBehavior = new MonoBehavior{ *behavior };
+        newScene.addComponent(behavior);
+    }
+    return newScene;
+}
+
 void Scene::start(sf::RenderWindow &window){
-    for (auto behavior : this->behaviors){
+    for (auto behavior : behaviors){
         behavior->start(window);
     }
 }
