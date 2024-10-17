@@ -12,7 +12,7 @@ void Engine::setActiveScene(int indexScene){
     this->currentScene = this->scenes[indexScene];
 };
 
-Engine& Engine::registerScene(int index, Scene &scene){
+Engine& Engine::registerScene(int index, Scene scene){
     this->scenes[index] = scene;
     return *this;
 };
@@ -33,7 +33,9 @@ void Engine::build(){
 
     while (true)
     {
+        
         if(this->currentScene.isActive){
+            
             currentScene.run();
         }
 
@@ -47,7 +49,7 @@ Engine::Engine(Scene &scene){
     this->registerScene(0, scene);
 }
 
-void Engine::create(Scene &firstScene){
+void Engine::create(Scene firstScene){
     instance = new Engine(firstScene);
 }
 
