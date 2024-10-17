@@ -6,23 +6,30 @@
 #include "Platform.hpp"
 #include "CountdownDisplay.hpp"
 #include "PingPongBall.hpp"
+#include "Engine.hpp"
 #include <iostream>
 
 void GameScreen::initBackground(){
     
-}
-
-std::vector<Platform*> platforms;
-PingPongBall* pingPongBall;
-CountdownDisplay countdownDisplay("assets/fonts/Roboto-Black.ttf");    
+} 
 
 void GameScreen::start(sf::RenderWindow& window){
+
+    countdownDisplay.reset();
+
     platforms = GameObject::FindObjectsOfType<Platform>();
     pingPongBall = GameObject::FindObjectOfType<PingPongBall>();
 
     platforms[0]->setY(100);
     platforms[1]->setY(window.getSize().y - 100 - platforms[1]->height);
     
+    pingPongBall->setTopCollisionCallback([](){
+        Engine::getInstance().setActiveScene(0);
+    });
+    pingPongBall->setBottomCollisionCallback([](){
+        Engine::getInstance().setActiveScene(0);
+    });
+
     countdownDisplay.centerByWindow(window);
     countdownDisplay.run();
 };
