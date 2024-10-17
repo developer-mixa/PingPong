@@ -9,6 +9,7 @@ class CountdownDisplay : public sf::Drawable {
 private:
     sf::Font font;
     int count;
+    int initialCount;
     sf::Text text;
 public:
     bool finish = false;
@@ -20,6 +21,7 @@ public:
     }
     void centerByWindow(sf::RenderWindow& window);
     void doRun();
+    void reset();
     void run();
 };
 

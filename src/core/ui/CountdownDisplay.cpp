@@ -7,12 +7,18 @@
 
 CountdownDisplay::CountdownDisplay(const std::string& fontPath, int startCount){
     font.loadFromFile(fontPath);
+    initialCount = startCount;
     count = startCount;
     text.setFont(font);
     text.setCharacterSize(TEXT_SIZE);
     text.setFillColor(sf::Color::White);
     text.setOutlineColor(sf::Color::Black);
     text.setOutlineThickness(2);
+}
+
+void CountdownDisplay::reset(){
+    finish = false;
+    count = initialCount;
 }
 
 void CountdownDisplay::doRun(){
