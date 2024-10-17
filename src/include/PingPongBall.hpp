@@ -16,6 +16,8 @@ private:
     float speed = 2;
     float angle;
     CollisionType lastTouch = CollisionType::NONE;
+    std::function<void()> topCollisionCallback;
+    std::function<void()> bottomCollisionCallback;
     sf::RenderWindow* window;
 public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -23,6 +25,8 @@ public:
     void move();
     void randomRefresh();
     void refresh();
+    void setTopCollisionCallback(std::function<void()> callback);
+    void setBottomCollisionCallback(std::function<void()> callback);
     float calculateAngle();
     bool checkAndSetLastTouch(bool collideValue, CollisionType checkCollisionType);
     PingPongBall(Platform &topPlatform, Platform &bottomPlatform);
