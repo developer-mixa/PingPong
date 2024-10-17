@@ -12,10 +12,10 @@ private:
     bool isDestroy;
 public:
     static Engine& getInstance();
-    static void create(Scene &scene);
+    static void create(Scene scene);
     Scene& getActiveScene();
     void setActiveScene(int indexScene);
-    Engine& registerScene(int index, Scene &scene);
+    Engine& registerScene(int index, Scene scene);
     void build();
     void destroy();
 };
