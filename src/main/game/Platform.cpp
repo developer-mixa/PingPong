@@ -14,6 +14,8 @@ void Platform::setY(float height){
 }
 
 void Platform::start(sf::RenderWindow &window){
+    movingLeft = false;
+    movingRight = false;
     rectanglePlatform = sf::RectangleShape(sf::Vector2f(200, height));
     rectanglePlatform.setFillColor(sf::Color::White);
     rectanglePlatform.setPosition(window.getSize().x / 2 - rectanglePlatform.getSize().x / 2, y);

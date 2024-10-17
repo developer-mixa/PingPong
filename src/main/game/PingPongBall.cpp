@@ -10,6 +10,7 @@
 #define CIRCLE_RADUIS 30
 #define MIN_ANGLE 30
 #define MAX_SPEED 10.f
+#define MIN_SPEED 2.f
 #define MAX_ANGLE 150
 
 void PingPongBall::start(sf::RenderWindow& window) {
@@ -17,6 +18,8 @@ void PingPongBall::start(sf::RenderWindow& window) {
     const float radius = static_cast<float>(circle.getRadius());
     auto windowSize = window.getSize();
     this->window = &window;
+
+    speed = MIN_SPEED;
     
     float centerX = static_cast<float>(windowSize.x) / 2;
     float centerY = static_cast<float>(windowSize.y) / 2;
@@ -28,6 +31,14 @@ void PingPongBall::start(sf::RenderWindow& window) {
 void PingPongBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(circle, states);
 };
+
+void PingPongBall::setTopCollisionCallback(std::function<void()> callback){
+    topCollisionCallback = callback;
+}
+
+void PingPongBall::setBottomCollisionCallback(std::function<void()> callback){
+    bottomCollisionCallback = callback;
+}
 
 void PingPongBall::move(){
     auto currentPosition = circle.getPosition();
@@ -44,6 +55,9 @@ void PingPongBall::move(){
         velocity.x *= -1;
         velocity.y *= -1;
     }
+
+    if(collideTopWall && topCollisionCallback) topCollisionCallback();
+    if(collideBottomWall && bottomCollisionCallback) bottomCollisionCallback();
     
     if(
         checkAndSetLastTouch(collide(*bottomPlatform), CollisionType::PLAYER_1) ||
@@ -56,7 +70,7 @@ void PingPongBall::move(){
         refresh();
     }
 
-    circle.setPosition(velocity.x * speed + currentPosition.x, velocity.y * speed + currentPosition.y);
+    circle.move(velocity.x * speed, velocity.y * speed);
 }
 
 bool PingPongBall::checkAndSetLastTouch(bool collideValue, CollisionType checkCollisionType){
