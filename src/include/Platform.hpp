@@ -4,25 +4,28 @@
 #include "MonoBehavior.hpp"
 #include "RectCollider.hpp"
 
+using namespace sf;
+
 class Platform : public MonoBehavior, public RectCollider {
 private:
     const float speed = 10;
     float y = 0;
-    sf::Keyboard::Key leftMoveCode;
-    sf::Keyboard::Key rightMoveCode;
-    sf::RectangleShape rectanglePlatform;
+    Keyboard::Key leftMoveCode;
+    Keyboard::Key rightMoveCode;
+    RectangleShape rectanglePlatform;
+    Vector2f velocity;
     bool movingLeft = false;
     bool movingRight = false;
-    
+    void start(RenderWindow &window) override;
+    void update(RenderWindow &window) override;
+    void eventTrigger(Event event, RenderWindow &window) override;
 public:
     const int height = 50;
-    void start(sf::RenderWindow &window) override;
-    void update(sf::RenderWindow &window) override;
-    void eventTrigger(sf::Event event, sf::RenderWindow &window) override;
-    void goLeft(sf::RenderWindow &window);
-    void goRight(sf::RenderWindow &window);
+    void goLeft(RenderWindow &window);
+    void goRight(RenderWindow &window);
     void setY(float height);
-    Platform(sf::Keyboard::Key leftMoveCode, sf::Keyboard::Key rightMoveCode);
+    Vector2f getVelocity();
+    Platform(Keyboard::Key leftMoveCode, Keyboard::Key rightMoveCode);
 };
 
 #endif

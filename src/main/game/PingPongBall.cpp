@@ -13,7 +13,10 @@
 #define MIN_SPEED 2.f
 #define MAX_ANGLE 150
 
-void PingPongBall::start(sf::RenderWindow& window) {
+using namespace sf;
+using namespace std;
+
+void PingPongBall::start(RenderWindow& window) {
 
     const float radius = static_cast<float>(circle.getRadius());
     auto windowSize = window.getSize();
@@ -28,15 +31,15 @@ void PingPongBall::start(sf::RenderWindow& window) {
     randomRefresh();
 }
 
-void PingPongBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void PingPongBall::draw(RenderTarget& target, RenderStates states) const {
     target.draw(circle, states);
 };
 
-void PingPongBall::setTopCollisionCallback(std::function<void()> callback){
+void PingPongBall::setTopCollisionCallback(function<void()> callback){
     topCollisionCallback = callback;
 }
 
-void PingPongBall::setBottomCollisionCallback(std::function<void()> callback){
+void PingPongBall::setBottomCollisionCallback(function<void()> callback){
     bottomCollisionCallback = callback;
 }
 
@@ -50,6 +53,8 @@ void PingPongBall::move(){
     bool collideRightWall = currentPosition.x + CIRCLE_RADUIS >= windowSize.x;
     bool collideTopWall = currentPosition.y <= 0;
     bool collideBottomWall = currentPosition.y + CIRCLE_RADUIS >= windowSize.y;
+    bool colliideBottomPlatform = collide(*bottomPlatform);
+    bool colliideTopPlatform = collide(*topPlatform);
 
     if (collideRightWall || collideLeftWall) {
         velocity.x *= -1;
@@ -60,8 +65,8 @@ void PingPongBall::move(){
     if(collideBottomWall && bottomCollisionCallback) bottomCollisionCallback();
     
     if(
-        checkAndSetLastTouch(collide(*bottomPlatform), CollisionType::PLAYER_1) ||
-        checkAndSetLastTouch(collide(*topPlatform), CollisionType::PLAYER_2) ||
+        checkAndSetLastTouch(colliideBottomPlatform, CollisionType::PLAYER_1) ||
+        checkAndSetLastTouch(colliideTopPlatform, CollisionType::PLAYER_2) ||
         checkAndSetLastTouch(collideLeftWall, CollisionType::LEFT_SIDE) ||
         checkAndSetLastTouch(collideRightWall, CollisionType::RIGHT_SIDE) ||
         checkAndSetLastTouch(collideTopWall, CollisionType::TOP_SIDE) ||
@@ -76,21 +81,19 @@ void PingPongBall::move(){
 bool PingPongBall::checkAndSetLastTouch(bool collideValue, CollisionType checkCollisionType){
     bool result = collideValue && lastTouch != checkCollisionType;
     if(collideValue) lastTouch = checkCollisionType;
-    if(result) speed = std::min(speed + 1, MAX_SPEED);
+    if(result) speed = min(speed + 1, MAX_SPEED);
     return result;
 }
 
 
-float PingPongBall::calculateAngle()
-{
-    float angle = std::atan2(-velocity.y, velocity.x) * 180 / M_PI;
+float PingPongBall::calculateAngle() const {
+    float angle = atan2(-velocity.y, velocity.x) * 180 / M_PI;
     if (angle < 0.f)
         angle += 360.f;
     return angle;
 }
 
-int GetRandomNumber(int min, int max)
-{
+int PingPongBall::getRandomAngles(int min, int max) const{
     auto rnd = std::random_device{};
     auto gen = std::mt19937_64{rnd()};
     auto dis = std::uniform_int_distribution<int>{min, max};
@@ -98,7 +101,7 @@ int GetRandomNumber(int min, int max)
 }
 
 void PingPongBall::randomRefresh(){
-    int randomAngleDegrees = GetRandomNumber(MIN_ANGLE, MAX_ANGLE);
+    int randomAngleDegrees = getRandomAngles(MIN_ANGLE, MAX_ANGLE);
     angle = randomAngleDegrees * M_PI / 180.0;
 
     float sideFactor = (rand() % 2 == 0) ? 1 : -1;
@@ -110,14 +113,14 @@ void PingPongBall::randomRefresh(){
 
 void PingPongBall::refresh(){
     angle = calculateAngle();
-    velocity.x = std::cos(angle * M_PI / 180);
-    velocity.y = std::sin(angle * M_PI / 180);
+    velocity.x = cos(angle * M_PI / 180);
+    velocity.y = sin(angle * M_PI / 180);
 }
 
 PingPongBall::PingPongBall(Platform &topPlatform, Platform &bottomPlatform) : CircleCollider(circle) {
     this->topPlatform = &topPlatform;
     this->bottomPlatform = &bottomPlatform;
 
-    circle = sf::CircleShape(CIRCLE_RADUIS);
-    circle.setFillColor(sf::Color::White);
+    circle = CircleShape(CIRCLE_RADUIS);
+    circle.setFillColor(Color::White);
 }

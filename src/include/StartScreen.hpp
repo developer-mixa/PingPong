@@ -6,23 +6,23 @@
 #include <iostream>
 #include "TextButton.hpp"
 
+using namespace sf;
+
 class StartScreen : public MonoBehavior {
 private:
     void initBackground();
-    void initStartButton(sf::RenderWindow& window);
-    void initQuitButton();
-    sf::CircleShape shape; 
-    sf::Sprite background;
-    sf::Texture backgroundTexture;
+    void initStartButton(RenderWindow& window);
+    Sprite background;
+    Texture backgroundTexture;
     TextButton startButton;
     TextButton quitButton;
-    sf::Font font;
+    Font font;
 
 public:
     StartScreen() {};
-    void update(sf::RenderWindow& window) override;
-    void start(sf::RenderWindow& window) override;
-    void eventTrigger(sf::Event event, sf::RenderWindow &window) override;
+    void update(RenderWindow& window) override;
+    void start(RenderWindow& window) override;
+    void eventTrigger(Event event, RenderWindow &window) override;
 };
 
 #endif

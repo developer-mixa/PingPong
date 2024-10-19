@@ -5,24 +5,24 @@
 #include <iostream>
 #include <thread>
 
-class CountdownDisplay : public sf::Drawable {
+using namespace sf;
+using namespace std;
+
+class CountdownDisplay : public Drawable {
 private:
-    sf::Font font;
+    Font font;
     int count;
     int initialCount;
-    sf::Text text;
+    Text text;
+    thread countdownThread;
+    void doRun();
 public:
     bool finish = false;
-    std::thread countdownThread;
-    CountdownDisplay(const std::string& fontPath, int startCount=3);
-
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
-        target.draw(text, states);
-    }
-    void centerByWindow(sf::RenderWindow& window);
-    void doRun();
+    CountdownDisplay(const string& fontPath, int startCount=3);
+    virtual void draw(RenderTarget& target, RenderStates states) const override;
     void reset();
     void run();
+    void centerByWindow(const RenderWindow& window);
 };
 
 #endif

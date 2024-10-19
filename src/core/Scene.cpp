@@ -8,20 +8,24 @@
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
+#define GAME_NAME "PingPong"
 
-void Scene::start(sf::RenderWindow &window){
+using namespace sf;
+using namespace std;
+
+void Scene::start(RenderWindow &window){
     for (auto behavior : behaviors){
         behavior->start(window);
     }
 }
 
-void Scene::update(sf::RenderWindow &window){
+void Scene::update(RenderWindow &window){
     for (auto behavior : this->behaviors){
         behavior->update(window);
     }
 }
 
-void Scene::handleEvent(sf::Event event, sf::RenderWindow &window){
+void Scene::handleEvent(Event event, RenderWindow &window){
     for (auto behavior : this->behaviors){
         behavior->eventTrigger(event, window);
     }
@@ -33,7 +37,7 @@ Scene& Scene::addComponent(MonoBehavior *behavior){
 }
 
 void Scene::run(){
-    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "PingPong");
+    RenderWindow window(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), GAME_NAME);
 
     this->start(window);
 

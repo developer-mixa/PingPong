@@ -5,13 +5,16 @@
 #include "MonoBehavior.hpp"
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
+using namespace std;
+
 class Scene {
 private:
-    void start(sf::RenderWindow &window);
-    void update(sf::RenderWindow &window);
-    void handleEvent(sf::Event event, sf::RenderWindow &window);
+    vector<MonoBehavior*> behaviors;
+    void start(RenderWindow &window);
+    void update(RenderWindow &window);
+    void handleEvent(Event event, RenderWindow &window);
 public:
-    std::vector<MonoBehavior*> behaviors;
     bool isActive = false;
     Scene& addComponent(MonoBehavior *behavior);
     void run();
@@ -25,8 +28,8 @@ public:
         return nullptr;
     }
 
-    template<typename T> std::vector<T*> FindObjectsOfType(){
-        std::vector<T*> result;
+    template<typename T> vector<T*> FindObjectsOfType(){
+        vector<T*> result;
         for (auto behavior : behaviors){
             if(dynamic_cast<T*>(behavior)){
                 result.push_back(static_cast<T*>(behavior));
@@ -34,6 +37,7 @@ public:
         }
         return result;
     }
+
 };
 
 #endif

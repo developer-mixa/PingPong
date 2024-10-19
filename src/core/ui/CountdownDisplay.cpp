@@ -31,9 +31,13 @@ void CountdownDisplay::doRun(){
     finish = true;
 }
 
-void CountdownDisplay::centerByWindow(sf::RenderWindow& window){
+void CountdownDisplay::centerByWindow(sf::RenderWindow const &window){
     auto windowSize = window.getSize();
     text.setPosition(windowSize.x / 2, windowSize.y / 2 - TEXT_SIZE);
+}
+
+void CountdownDisplay::draw(RenderTarget& target, RenderStates states) const {
+    target.draw(text, states);
 }
 
 void CountdownDisplay::run(){

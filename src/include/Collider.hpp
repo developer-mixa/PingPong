@@ -3,10 +3,12 @@
 
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
+
 class Collider{
 public:
-    sf::Vector2f position;
-    void setPosition(sf::Vector2f newPos){
+    Vector2f position;
+    void setPosition(Vector2f const newPos) noexcept {
         position = newPos;
     }
     virtual bool collide(Collider &other) = 0;

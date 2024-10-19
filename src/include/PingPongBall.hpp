@@ -7,28 +7,32 @@
 #include "CircleCollider.hpp"
 #include "CollisionType.hpp"
 
-class PingPongBall : public sf::Drawable, public MonoBehavior, public CircleCollider {
+using namespace sf;
+using namespace std;
+
+class PingPongBall : public Drawable, public MonoBehavior, public CircleCollider {
 private:
-    sf::CircleShape circle;
+    CircleShape circle;
     Platform* topPlatform;
     Platform* bottomPlatform;
-    sf::Vector2f velocity;
+    Vector2f velocity;
     float speed = 2;
     float angle;
     CollisionType lastTouch = CollisionType::NONE;
-    std::function<void()> topCollisionCallback;
-    std::function<void()> bottomCollisionCallback;
-    sf::RenderWindow* window;
-public:
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void start(sf::RenderWindow& window) override;
-    void move();
+    function<void()> topCollisionCallback;
+    function<void()> bottomCollisionCallback;
+    RenderWindow* window;
+    int getRandomAngles(int min, int max) const;
     void randomRefresh();
-    void refresh();
-    void setTopCollisionCallback(std::function<void()> callback);
-    void setBottomCollisionCallback(std::function<void()> callback);
-    float calculateAngle();
+    float calculateAngle() const;
     bool checkAndSetLastTouch(bool collideValue, CollisionType checkCollisionType);
+    void refresh();
+    void start(RenderWindow& window) override;
+public:
+    virtual void draw(RenderTarget& target, RenderStates states) const override;
+    void move();
+    void setTopCollisionCallback(function<void()> callback);
+    void setBottomCollisionCallback(function<void()> callback);
     PingPongBall(Platform &topPlatform, Platform &bottomPlatform);
 };
 

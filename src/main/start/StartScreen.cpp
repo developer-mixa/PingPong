@@ -16,12 +16,14 @@
 #define FONT_PATH "assets/fonts/Roboto-Black.ttf"
 #include "TextButton.hpp"
 
+using namespace sf;
+
 void StartScreen::initBackground(){
     backgroundTexture.loadFromFile(START_SCREEN_PATH);
-    background = sf::Sprite(backgroundTexture);
+    background = Sprite(backgroundTexture);
 }
 
-TextButton createButton(char* text, sf::Color fill, sf::RenderWindow& window, sf::Font& font){
+TextButton createButton(char* text, Color fill, RenderWindow& window, Font& font){
     return TextButton(
         text,
         BUTTON_WIDTH,
@@ -60,14 +62,14 @@ void StartScreen::eventTrigger(sf::Event event, sf::RenderWindow &window){
     }
 }
 
-void StartScreen::start(sf::RenderWindow &window){
+void StartScreen::start(RenderWindow &window){
     font.loadFromFile(FONT_PATH);
     initBackground();
     initStartButton(window);
     fitToScreen(background, window);
 }
 
-void StartScreen::update(sf::RenderWindow &window){
+void StartScreen::update(RenderWindow &window){
     window.draw(background);
     startButton.draw(window);
     quitButton.draw(window);

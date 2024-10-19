@@ -4,16 +4,18 @@
 #include <SFML/Graphics.hpp>
 #include "Collider.hpp"
 
+using namespace sf;
+
 class CircleCollider : public Collider {
 public:
-    sf::CircleShape* circle;
-    CircleCollider(sf::CircleShape& circle);
+    CircleShape* circle;
+    CircleCollider(CircleShape& circle);
     
-    bool collide(Collider& other) override;
-    bool collidesWithRect(sf::RectangleShape& rectangle);
+    bool collide(Collider &other) override;
+    bool collidesWithRect(RectangleShape& rectangle) const;
 
 private:
-    sf::Vector2f center;
+    Vector2f center;
     float radius;
 };
 
