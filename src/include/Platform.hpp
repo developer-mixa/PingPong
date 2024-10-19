@@ -3,6 +3,7 @@
 
 #include "MonoBehavior.hpp"
 #include "RectCollider.hpp"
+#include "PlatformMovingType.hpp"
 
 using namespace sf;
 
@@ -13,9 +14,9 @@ private:
     Keyboard::Key leftMoveCode;
     Keyboard::Key rightMoveCode;
     RectangleShape rectanglePlatform;
-    Vector2f velocity;
-    bool movingLeft = false;
-    bool movingRight = false;
+    PlatrormMovingType movingType;
+    bool moveLeft = false;
+    bool moveRight = false;
     void start(RenderWindow &window) override;
     void update(RenderWindow &window) override;
     void eventTrigger(Event event, RenderWindow &window) override;
@@ -24,8 +25,8 @@ public:
     void goLeft(RenderWindow &window);
     void goRight(RenderWindow &window);
     void setY(float height);
-    Vector2f getVelocity();
     Platform(Keyboard::Key leftMoveCode, Keyboard::Key rightMoveCode);
+    PlatrormMovingType getMovingType() const;
 };
 
 #endif

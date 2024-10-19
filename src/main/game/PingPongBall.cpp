@@ -5,6 +5,7 @@
 #include "CircleCollider.hpp"
 #include "RectCollider.hpp"
 #include "CollisionType.hpp"
+#include "PlatformMovingType.hpp"
 
 #define _USE_MATH_DEFINES
 #define CIRCLE_RADUIS 30
@@ -63,7 +64,10 @@ void PingPongBall::move(){
 
     if(collideTopWall && topCollisionCallback) topCollisionCallback();
     if(collideBottomWall && bottomCollisionCallback) bottomCollisionCallback();
-    
+
+    if(colliideBottomPlatform) handlePlatformCollision(bottomPlatform);
+    if(colliideTopPlatform) handlePlatformCollision(topPlatform);
+
     if(
         checkAndSetLastTouch(colliideBottomPlatform, CollisionType::PLAYER_1) ||
         checkAndSetLastTouch(colliideTopPlatform, CollisionType::PLAYER_2) ||
@@ -76,6 +80,16 @@ void PingPongBall::move(){
     }
 
     circle.move(velocity.x * speed, velocity.y * speed);
+}
+
+void PingPongBall::handlePlatformCollision(Platform* platform) {
+    auto ballVelocityX = velocity.x;
+    auto platformMovingType = platform->getMovingType();
+    if(
+        platformMovingType == PlatrormMovingType::RIGHT && ballVelocityX < 0 ||
+        platformMovingType == PlatrormMovingType::LEFT && ballVelocityX >= 0){
+        velocity.x *= -1;
+    }
 }
 
 bool PingPongBall::checkAndSetLastTouch(bool collideValue, CollisionType checkCollisionType){

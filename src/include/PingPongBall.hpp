@@ -26,6 +26,7 @@ private:
     void randomRefresh();
     float calculateAngle() const;
     bool checkAndSetLastTouch(bool collideValue, CollisionType checkCollisionType);
+    void handlePlatformCollision(Platform* platform);
     void refresh();
     void start(RenderWindow& window) override;
 public:
