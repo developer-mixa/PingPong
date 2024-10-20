@@ -79,16 +79,22 @@ void PingPongBall::move(){
         refresh();
     }
 
-    circle.move(velocity.x * speed, velocity.y * speed);
+    circle.setPosition(
+        clamp(currentPosition.x + velocity.x * speed, 0.F, (float) windowSize.x - CIRCLE_RADUIS),
+        clamp(currentPosition.y + velocity.y * speed, 0.F, (float) windowSize.y - CIRCLE_RADUIS)
+    );
 }
 
 void PingPongBall::handlePlatformCollision(Platform* platform) {
     auto ballVelocityX = velocity.x;
     auto platformMovingType = platform->getMovingType();
+    float angle = cos(platform->speed * M_PI / 180.0);
     if(
         platformMovingType == PlatrormMovingType::RIGHT && ballVelocityX < 0 ||
         platformMovingType == PlatrormMovingType::LEFT && ballVelocityX >= 0){
-        velocity.x *= -1;
+        velocity.x *= -angle;
+    } else {
+        velocity.x *= angle;
     }
 }
 

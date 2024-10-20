@@ -9,7 +9,6 @@ using namespace sf;
 
 class Platform : public MonoBehavior, public RectCollider {
 private:
-    const float speed = 10;
     float y = 0;
     Keyboard::Key leftMoveCode;
     Keyboard::Key rightMoveCode;
@@ -21,6 +20,7 @@ private:
     void update(RenderWindow &window) override;
     void eventTrigger(Event event, RenderWindow &window) override;
 public:
+    const float speed = 10;
     const int height = 50;
     void goLeft(RenderWindow &window);
     void goRight(RenderWindow &window);
