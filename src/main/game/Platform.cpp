@@ -62,6 +62,5 @@ void Platform::update(RenderWindow &window){
     if(moveLeft) goLeft(window);
     else if(moveRight) goRight(window);
     else movingType = PlatrormMovingType::IDLE;
-    setPosition(rectanglePlatform.getPosition());
     window.draw(rectanglePlatform);
 }

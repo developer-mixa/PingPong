@@ -46,7 +46,6 @@ void PingPongBall::setBottomCollisionCallback(function<void()> callback){
 
 void PingPongBall::move(){
     auto currentPosition = circle.getPosition();
-    setPosition(currentPosition);
 
     auto windowSize = window->getSize();
 
