@@ -23,7 +23,7 @@ void StartScreen::initBackground(){
     background = Sprite(backgroundTexture);
 }
 
-TextButton createButton(char* text, Color fill, RenderWindow& window, Font& font){
+TextButton createButton(const char* text, Color fill, Font& font){
     return TextButton(
         text,
         BUTTON_WIDTH,
@@ -37,9 +37,9 @@ void StartScreen::initStartButton(sf::RenderWindow& window){
     const auto windowSize = window.getSize();
     const int offset = windowSize.x / OFFSET_DIVIDER;
 
-    startButton = createButton(PLAY_TEXT, sf::Color::Green, window, font);
+    startButton = createButton(PLAY_TEXT, sf::Color::Green, font);
     startButton.setPosition(windowSize.x-BUTTON_WIDTH-offset, BUTTON_HEIGHT);
-    quitButton = createButton(QUIT_TEXT, sf::Color::Red, window, font);
+    quitButton = createButton(QUIT_TEXT, sf::Color::Red, font);
     sf::Vector2f startButtonPosition = startButton.getPosition();
     quitButton.setPosition(startButtonPosition.x, startButtonPosition.y + BUTTON_HEIGHT + QUIT_BUTTON_MARGIN_BOTTOM);
 }
@@ -53,7 +53,7 @@ void StartScreen::eventTrigger(sf::Event event, sf::RenderWindow &window){
         window.close();
     }
 
-    if(quitButton.isMouseOver(event, window)){
+    if(quitButton.isMouseOver(window)){
         auto windowSize = window.getSize();
 
         float randomX = static_cast<float>(rand()) / RAND_MAX * (windowSize.x - BUTTON_WIDTH);

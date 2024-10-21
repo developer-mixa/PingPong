@@ -13,7 +13,7 @@ private:
     bool mouseInButton(RenderWindow &window);
 public:
     TextButton(
-        char* text,
+        const char* text,
         float width,
         float height,
         Font& font,
@@ -28,7 +28,7 @@ public:
     void setPosition(float x, float y);
     virtual void draw(RenderWindow &window) override;
     bool isPressed(Event event, RenderWindow &window);
-    bool isMouseOver(Event event, RenderWindow &window);
+    bool isMouseOver(RenderWindow &window);
 
     float thickness = 2;
     Color outlineColor = Color::Black;

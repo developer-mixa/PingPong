@@ -1,7 +1,7 @@
 #include "TextButton.hpp"
 
 TextButton::TextButton(
-    char* text,
+    const char* text,
     float width,
     float height,
     sf::Font& font,
@@ -48,6 +48,6 @@ bool TextButton::isPressed(const sf::Event event, sf::RenderWindow &window) {
     return mouseInButton(window);
 }
 
-bool TextButton::isMouseOver(const sf::Event event, sf::RenderWindow &window) {
+bool TextButton::isMouseOver(sf::RenderWindow &window) {
     return mouseInButton(window);
 }

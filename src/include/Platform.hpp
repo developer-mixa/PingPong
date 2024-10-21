@@ -22,7 +22,7 @@ private:
 public:
     const float speed = 10;
     const int height = 50;
-    void goLeft(RenderWindow &window);
+    void goLeft();
     void goRight(RenderWindow &window);
     void setY(float height);
     Platform(Keyboard::Key leftMoveCode, Keyboard::Key rightMoveCode);

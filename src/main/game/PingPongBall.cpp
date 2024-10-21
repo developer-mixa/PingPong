@@ -89,8 +89,8 @@ void PingPongBall::handlePlatformCollision(Platform* platform) {
     auto platformMovingType = platform->getMovingType();
     float angle = cos(platform->speed * M_PI / 180.0);
     if(
-        platformMovingType == PlatrormMovingType::RIGHT && ballVelocityX < 0 ||
-        platformMovingType == PlatrormMovingType::LEFT && ballVelocityX >= 0){
+        (platformMovingType == PlatrormMovingType::RIGHT && ballVelocityX < 0) ||
+        (platformMovingType == PlatrormMovingType::LEFT && ballVelocityX >= 0)){
         velocity.x *= -angle;
     } else {
         velocity.x *= angle;

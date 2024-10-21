@@ -26,7 +26,7 @@ void Platform::start(RenderWindow &window){
     rectanglePlatform.setPosition(window.getSize().x / 2 - rectanglePlatform.getSize().x / 2, y);
 }
 
-void Platform::goLeft(RenderWindow &window){
+void Platform::goLeft(){
     Vector2f currentPosition = rectanglePlatform.getPosition();
     movingType = PlatrormMovingType::LEFT;
     auto newPosition = max(0.f, currentPosition.x - speed);
@@ -44,7 +44,7 @@ PlatrormMovingType Platform::getMovingType() const {
     return movingType;
 }
 
-void Platform::eventTrigger(Event event, RenderWindow &window){
+void Platform::eventTrigger(Event event, [[maybe_unused]] RenderWindow &window){
     switch (event.type)
     {
         case Event::KeyPressed:
@@ -55,11 +55,13 @@ void Platform::eventTrigger(Event event, RenderWindow &window){
             if(event.key.code == leftMoveCode) moveLeft = false;
             else if(event.key.code == rightMoveCode) moveRight = false;
             break;
+        default:
+            break;
     }
 }
 
 void Platform::update(RenderWindow &window){
-    if(moveLeft) goLeft(window);
+    if(moveLeft) goLeft();
     else if(moveRight) goRight(window);
     else movingType = PlatrormMovingType::IDLE;
     window.draw(rectanglePlatform);
