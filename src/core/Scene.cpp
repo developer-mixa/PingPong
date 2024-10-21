@@ -36,8 +36,14 @@ Scene& Scene::addComponent(MonoBehavior *behavior){
     return *this;
 }
 
+float currentScreenWidth = SCREEN_WIDTH;
+float currentScreenHeight = SCREEN_HEIGHT;
+
 void Scene::run(){
-    RenderWindow window(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), GAME_NAME);
+
+    auto window = RenderWindow(VideoMode(currentScreenWidth, currentScreenHeight), GAME_NAME);
+
+    window.setSize(Vector2u(currentScreenWidth, currentScreenHeight));
 
     this->start(window);
 
@@ -45,6 +51,9 @@ void Scene::run(){
 
     while (window.isOpen() && this->isActive)
     {
+        auto windowSize = window.getSize();
+        currentScreenWidth = windowSize.x;
+        currentScreenHeight = windowSize.y;
         sf::Event event;
         while (window.pollEvent(event))
         {
