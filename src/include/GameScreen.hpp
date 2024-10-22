@@ -21,6 +21,8 @@ public:
     GameScreen(){}
     void start(sf::RenderWindow& window) override;
     void update(sf::RenderWindow& window) override;
+    void eventTrigger(Event event, RenderWindow &window) override;
+    
 };
 
 #endif

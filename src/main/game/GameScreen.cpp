@@ -36,6 +36,13 @@ void GameScreen::finish() const {
     Engine::getInstance().setActiveScene(0);
 }
 
+void GameScreen::eventTrigger(Event event, RenderWindow &window){
+    if (event.type == sf::Event::Resized) {
+        window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+        platforms[1]->setY(window.getSize().y - PLATFORM_OFFSET - platforms[1]->height);
+    }
+}
+
 void GameScreen::update(sf::RenderWindow& window){
     if(!countdownDisplay.finish) window.draw(countdownDisplay);
     else {

@@ -1,6 +1,7 @@
 #include "Platform.hpp"
 #include "RectCollider.hpp"
 #include "PlatformMovingType.hpp"
+#include <iostream>
 
 using namespace sf;
 using namespace std;
@@ -30,14 +31,14 @@ void Platform::goLeft(){
     Vector2f currentPosition = rectanglePlatform.getPosition();
     movingType = PlatrormMovingType::LEFT;
     auto newPosition = max(0.f, currentPosition.x - speed);
-    rectanglePlatform.setPosition(newPosition, currentPosition.y);
+    rectanglePlatform.setPosition(newPosition, y);
 }
 
 void Platform::goRight(RenderWindow &window){
     Vector2f currentPosition = rectanglePlatform.getPosition();
     movingType = PlatrormMovingType::RIGHT;
     auto newPosition = min((float)window.getSize().x - rectanglePlatform.getSize().x, currentPosition.x + speed);
-    rectanglePlatform.setPosition(newPosition, currentPosition.y);
+    rectanglePlatform.setPosition(newPosition, y);
 }
 
 PlatrormMovingType Platform::getMovingType() const {
@@ -63,6 +64,10 @@ void Platform::eventTrigger(Event event, [[maybe_unused]] RenderWindow &window){
 void Platform::update(RenderWindow &window){
     if(moveLeft) goLeft();
     else if(moveRight) goRight(window);
-    else movingType = PlatrormMovingType::IDLE;
+    else {
+        auto pos = rectangle->getPosition();
+        rectanglePlatform.setPosition(pos.x, y);
+        movingType = PlatrormMovingType::IDLE;
+    } 
     window.draw(rectanglePlatform);
 }
