@@ -40,6 +40,8 @@ void MusicManager::playRandomMusic() {
         return;
     }
 
+    if(singleMusic.getStatus() == singleMusic.Playing) return;
+
     std::srand(std::time(0));
     int randomIndex = std::rand() % musicsPathes.size();
 
