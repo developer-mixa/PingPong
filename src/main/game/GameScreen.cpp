@@ -1,6 +1,6 @@
 #include "GameScreen.hpp"
 
-#define GAME_SCREEN_PATH ""
+#define LOOSE_SOUND_PATH "assets/sounds/finish_sound.flac"
 
 #include "GameObject.hpp"
 #include "Platform.hpp"
@@ -8,8 +8,12 @@
 #include "PingPongBall.hpp"
 #include "Engine.hpp"
 #include <iostream>
+#include <SFML/Audio.hpp>
+#include "MusicManager.hpp"
 
 #define PLATFORM_OFFSET 100
+
+MusicManager gameMusic;
 
 void GameScreen::start(sf::RenderWindow& window){
 
@@ -30,10 +34,13 @@ void GameScreen::start(sf::RenderWindow& window){
 
     countdownDisplay.centerByWindow(window);
     countdownDisplay.run();
+
+    gameMusic.loadSingleMusic(LOOSE_SOUND_PATH);
 };
 
 void GameScreen::finish() const {
     Engine::getInstance().setActiveScene(0);
+    gameMusic.playSingleMusic();
 }
 
 void GameScreen::eventTrigger(Event event, RenderWindow &window){

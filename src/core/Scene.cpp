@@ -62,8 +62,7 @@ void Scene::run(){
             if (event.type == sf::Event::Closed){
                 Engine::getInstance().destroy();               
                 window.close();
-            }
-            
+            }            
         }
         
         window.clear();

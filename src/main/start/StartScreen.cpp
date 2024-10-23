@@ -3,7 +3,6 @@
 #include <iostream>
 #include "StartScreen.hpp"
 #include "Engine.hpp"
-
 #define BUTTON_WIDTH 200
 #define BUTTON_HEIGHT 50
 #define OFFSET_DIVIDER 24
@@ -14,7 +13,9 @@
 #define QUIT_TEXT "Quit"
 #define START_SCREEN_PATH "assets/images/start_screen.jpg"
 #define FONT_PATH "assets/fonts/Roboto-Black.ttf"
+#define START_SOUND "assets/sounds/lee_sound.flac"
 #include "TextButton.hpp"
+#include "MusicManager.hpp"
 
 using namespace sf;
 
@@ -62,11 +63,16 @@ void StartScreen::eventTrigger(sf::Event event, sf::RenderWindow &window){
     }
 }
 
+MusicManager music;
+
 void StartScreen::start(RenderWindow &window){
     font.loadFromFile(FONT_PATH);
     initBackground();
     initStartButton(window);
     fitToScreen(background, window);
+    
+    music.loadSingleMusic(START_SOUND);
+    music.playSingleMusic();
 }
 
 void StartScreen::update(RenderWindow &window){

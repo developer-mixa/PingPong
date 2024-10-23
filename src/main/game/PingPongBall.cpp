@@ -6,6 +6,8 @@
 #include "RectCollider.hpp"
 #include "CollisionType.hpp"
 #include "PlatformMovingType.hpp"
+#include <SFML/Audio.hpp>
+#include "MusicManager.hpp"
 
 #define _USE_MATH_DEFINES
 #define CIRCLE_RADUIS 30
@@ -14,8 +16,12 @@
 #define MIN_SPEED 2.f
 #define MAX_ANGLE 150
 
+#define PING_PONG_SOUNDS_PATH "assets/sounds/ping_pong"
+
 using namespace sf;
 using namespace std;
+
+MusicManager musicManager;
 
 void PingPongBall::start(RenderWindow& window) {
 
@@ -30,6 +36,7 @@ void PingPongBall::start(RenderWindow& window) {
     
     circle.setPosition(centerX - radius, centerY - radius);
     randomRefresh();
+    musicManager.loadMusics(PING_PONG_SOUNDS_PATH);
 }
 
 void PingPongBall::draw(RenderTarget& target, RenderStates states) const {
@@ -134,6 +141,7 @@ void PingPongBall::refresh(){
     angle = calculateAngle();
     velocity.x = cos(angle * M_PI / 180);
     velocity.y = sin(angle * M_PI / 180);
+    musicManager.playRandomMusic();
 }
 
 PingPongBall::PingPongBall(Platform &topPlatform, Platform &bottomPlatform) : CircleCollider(circle) {
